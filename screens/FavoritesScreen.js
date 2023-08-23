@@ -1,3 +1,4 @@
+import * as Animatable from 'react-native-animatable';
 import { useDispatch, useSelector } from 'react-redux';
 import { View, FlatList, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { Avatar, ListItem } from 'react-native-elements';
@@ -80,13 +81,18 @@ const FavoritesScreen = ({ navigation }) => {
         );
     }
     return(
-        <FlatList
-            data={campsitesArray.filter((campsite) =>
-                favorites.includes(campsite.id)
-            )}
-            renderItem={renderFavoriteItem}
-            keyExtractor={(item) => item.id.toString()}
-        />
+        <Animatable.View
+            animation='fadeInRightBig'
+            duration={2000}
+            >
+            <FlatList
+                data={campsitesArray.filter((campsite) =>
+                    favorites.includes(campsite.id)
+                )}
+                renderItem={renderFavoriteItem}
+                keyExtractor={(item) => item.id.toString()}
+            />
+        </Animatable.View>
     )
 };
 
