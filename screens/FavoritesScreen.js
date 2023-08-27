@@ -51,7 +51,7 @@ const FavoritesScreen = ({ navigation }) => {
                 <View>
                     <ListItem
                         onPress={() =>
-                            navigation.navigate('Directory', {
+                            navigation.navigate('Services', {
                                 screen: 'CampsiteInfo',
                                 params: { campsite }
                             })

@@ -16,7 +16,7 @@ export const fetchCampsites = createAsyncThunk(
 );
 
 const campsitesSlice = createSlice({
-    name: 'campsites',
+    name: 'Services',
     initialState: { isLoading: true, errMess: null, campsitesArray: [] },
     reducers: {},
     extraReducers: (builder) => {

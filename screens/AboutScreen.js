@@ -9,11 +9,13 @@ function Mission() {
     return (
         <Card>
             <Card.Title>
-                Our Mission
+                Kit Wren LMT, CPT, PES, CES
             </Card.Title>
             <Card.Divider />
             <Text style={{ margin: 10 }}>
-                We present a curated database of the best campsites in the vast woods and backcountry of the World Wide Web Wilderness. We increase access to adventure for the public while promoting safe and respectful use of resources. The expert wilderness trekkers on our staff personally verify each campsite to make sure that they are up to our standards. We also present a platform for campers to share reviews on campsites they have visited with each other.
+            Kit is a licensed massage therapist, personal trainer, and performance health coach specializing in metabolic testing and analysis, sports, structural, and therapeutic massage, injury rehabilitation, neuromuscular therapy and nervous system-based craniosacral unwinding. Since recovering from a serious injury in 2015, Kit discovered his passion for helping others heal, find wellbeing and get the most out of their body's by overcoming limitations. He has worked alongside physical therapists, acupuncturists, massage therapists, sports performance coaches, nutritionists and other holistic health practitioners across Los Angeles and Denver.
+            
+            Kit searches for the cause of imbalance and aims to correct it at its root, the results being optimal health and peak performance. He customizes every session to best suit the individual needs of each client. He strives to help people understand and integrate their body and mind to live full lives and not let injuries, pain or stress keep them from being their most joyful, happy, and healthy selves. Each session is given from a place of professionalism, compassion, heart and humor.
             </Text>
         </Card>
     )

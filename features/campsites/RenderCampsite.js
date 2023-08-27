@@ -1,11 +1,55 @@
 import * as Animatable from 'react-native-animatable';
-import { StyleSheet, Text, View } from 'react-native';
+import { useRef } from 'react';
+import { StyleSheet, Text, View, PanResponder, Alert } from 'react-native';
 import { Card, Icon } from 'react-native-elements';
 import { baseUrl } from '../../shared/baseUrl';
 
-
 const RenderCampsite = (props) => {
     const { campsite } = props;
+
+    const view = useRef();
+
+    const isRightSwipe = ({ dx }) => dx > 200;
+
+    const isLeftSwipe = ({ dx }) => dx < -200;
+   
+    const panResponder = PanResponder.create({
+        onStartShouldSetPanResponder: () => true,
+        onPanResponderGrant: () => {
+            view.current
+                .rubberBand(1000)
+                .then((endState) => console.log(endState.finished ? 'finished' : 'canceled')) //THIS IS A PROMISE
+        },
+        onPanResponderEnd: (e, gestureState) => {
+            console.log('pan responder end', gestureState);
+            if (isLeftSwipe(gestureState)) {
+                Alert.alert(
+                    'Add Favorite',
+                    'Are you sure you wish to add ' +
+                        campsite.name +
+                        ' to favorites?',
+                    [
+                        {
+                            text: 'Cancel',
+                            style: 'cancel',
+                            onPress: () => console.log('Cancel Pressed')
+                        },
+                        {
+                            text: 'OK',
+                            onPress: () =>
+                                props.isFavorite
+                                    ? console.log('Already set as a favorite')
+                                    : props.markFavorite()
+                        }
+                    ],
+                    { cancelable: false }
+                );
+            } else if (isRightSwipe(gestureState)) {
+                props.onShowModal();
+                console.log('swiped right');
+        }
+    }
+});
     
     if (campsite) {
         return (
@@ -13,6 +57,8 @@ const RenderCampsite = (props) => {
                     animation='fadeInDownBig'
                     duration={2000}
                     delay={1000}
+                    ref={view}
+                    {...panResponder.panHandlers}
             >
                 <Card containerStyle={styles.cardContainer}>
                     <Card.Image source={{ uri: baseUrl + campsite.image }}>

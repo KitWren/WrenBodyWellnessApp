@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         flex: 1
     },
     loadingText: {
-        color: '#5637DD',
+        color: '#4a2c3f',
         fontSize: 14,
         fontWeight: 'bold'
     }

@@ -14,11 +14,11 @@ return (
                 <Card wrapperStyle={{ margin: 20 }}>
                     <Card.Title>Contact Information</Card.Title>
                         <Card.Divider />
-                            <Text>1 Nucamp Way</Text>
-                            <Text>Seattle, WA 98001</Text>
+                            <Text>720 14th Street</Text>
+                            <Text>Golden, CO 80401</Text>
                             <Text style={{ marginBottom: 10 }}>U.S.A.</Text>
-                            <Text>Phone: 1-206-555-1234</Text>
-                            <Text>Email: campsites@nucamp.co</Text>
+                            <Text>Phone: 1-720-443-0998</Text>
+                            <Text>Email: kit@wrenbody.com</Text>
                 </Card>
             </Animatable.View>
         </ScrollView>
