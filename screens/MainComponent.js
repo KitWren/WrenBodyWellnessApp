@@ -19,7 +19,7 @@ import { Icon } from "react-native-elements";
 import { useDispatch } from "react-redux";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/core";
 import NetInfo from "@react-native-community/netinfo";
-import CampsiteInfoScreen from "./CampsiteInfoScreen";
+import AppointmentInfoScreen from "./AppointmentInfoScreen";
 import DirectoryScreen from "./DirectoryScreen";
 import HomeScreen from "./HomeScreen";
 import AboutScreen from "./AboutScreen";
@@ -27,7 +27,7 @@ import ContactScreen from "./ContactScreen";
 import ReservationScreen from "./ReservationScreen";
 import PlainLogoItalicsFont from "../assets/images/PlainLogoItalicsFont.png";
 import { fetchPartners } from "../features/partners/partnersSlice";
-import { fetchCampsites } from "../features/campsites/campsitesSlice";
+import { fetchAppointments } from "../features/appointments/appointmentsSlice";
 import { fetchPromotions } from "../features/promotions/promotionsSlice";
 import { fetchComments } from "../features/comments/commentsSlice";
 import FavoritesScreen from "./FavoritesScreen";
@@ -139,7 +139,7 @@ function FavoritesNavigator() {
         name="Favorites"
         component={FavoritesScreen}
         options={({ navigation }) => ({
-          title: "Favorite Campsites",
+          title: "Favorite Services",
           headerLeft: () => (
             <Icon
               name="heart"
@@ -201,10 +201,10 @@ function DirectoryNavigator() {
         })}
       />
       <Stack.Screen
-        name="CampsiteInfo" //this is linked to payload-need to change functional code
-        component={CampsiteInfoScreen}
+        name="AppointmentInfo" //this is linked to payload-need to change functional code
+        component={AppointmentInfoScreen}
         options={({ route }) => ({
-          title: route.params.campsite.name,
+          title: route.params.appointment.name,
         })}
       />
     </Stack.Navigator>
@@ -231,7 +231,7 @@ function Main() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchCampsites());
+    dispatch(fetchAppointments());
     dispatch(fetchPromotions());
     dispatch(fetchPartners());
     dispatch(fetchComments());

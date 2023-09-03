@@ -1,50 +1,47 @@
-import * as Animatable from 'react-native-animatable';
-import { FlatList, Text, View } from 'react-native';
-import { Tile } from 'react-native-elements';
+import * as Animatable from "react-native-animatable";
+import { FlatList, Text, View } from "react-native";
+import { Tile } from "react-native-elements";
 import { useSelector } from "react-redux";
-import { baseUrl } from '../shared/baseUrl';
-import Loading from '../components/LoadingComponent';
+import { baseUrl } from "../shared/baseUrl";
+import Loading from "../components/LoadingComponent";
 
 const DirectoryScreen = ({ navigation }) => {
-    const campsites = useSelector((state) => state.campsites);
+  const appointments = useSelector((state) => state.appointments);
 
-    if (campsites.isLoading) {
-        return <Loading />;
-    }
-    if (campsites.errMess) {
-        return (
-            <View>
-                <Text>{campsites.errMess}</Text>
-            </View>
-        )
-    }
-
-    const renderDirectoryItem = ({ item: campsite }) => {
-        return (
-            <Animatable.View
-            animation='fadeInRightBig'
-            duration={2000}
-            >
-                <Tile 
-                    title={campsite.name}
-                    caption={campsite.description}
-                    featured
-                    onPress={() => 
-                        navigation.navigate('CampsiteInfo', { campsite })
-                    }
-                    imageSrc={{ uri: baseUrl + campsite.image }}   
-                />
-            </Animatable.View>
-        )
-    }
-
+  if (appointments.isLoading) {
+    return <Loading />;
+  }
+  if (appointments.errMess) {
     return (
-        <FlatList
-        data={campsites.campsitesArray}
-        renderItem={renderDirectoryItem}
-        keyExtractor={(item) => item.id.toString()}
+      <View>
+        <Text>{appointments.errMess}</Text>
+      </View>
+    );
+  }
+
+  const renderDirectoryItem = ({ item: appointment }) => {
+    return (
+      <Animatable.View animation="fadeInRightBig" duration={2000}>
+        <Tile
+          title={appointment.name}
+          caption={appointment.description}
+          featured
+          onPress={() =>
+            navigation.navigate("AppointmentInfo", { appointment })
+          }
+          imageSrc={{ uri: baseUrl + appointment.image }}
         />
-    )
-}
+      </Animatable.View>
+    );
+  };
+
+  return (
+    <FlatList
+      data={appointments.appointmentsArray}
+      renderItem={renderDirectoryItem}
+      keyExtractor={(item) => item.id.toString()}
+    />
+  );
+};
 
 export default DirectoryScreen;
