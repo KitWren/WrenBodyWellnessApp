@@ -14,7 +14,7 @@ export const fetchAppointments = createAsyncThunk(
 );
 
 const appointmentsSlice = createSlice({
-  name: "Appointments",
+  name: "appointments",
   initialState: { isLoading: true, errMess: null, appointmentsArray: [] },
   reducers: {},
   extraReducers: (builder) => {
@@ -25,7 +25,7 @@ const appointmentsSlice = createSlice({
       .addCase(fetchAppointments.fulfilled, (state, action) => {
         state.isLoading = false;
         state.errMess = null;
-        state.appointmentsArrayArray = action.payload;
+        state.appointmentsArray = action.payload;
       })
       .addCase(fetchAppointments.rejected, (state, action) => {
         state.isLoading = false;

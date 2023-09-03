@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { baseUrl } from "../shared/baseUrl";
 import Loading from "../components/LoadingComponent";
 
-const DirectoryScreen = ({ navigation }) => {
+const AppointmentScreen = ({ navigation }) => {
   const appointments = useSelector((state) => state.appointments);
 
   if (appointments.isLoading) {
@@ -19,7 +19,7 @@ const DirectoryScreen = ({ navigation }) => {
     );
   }
 
-  const renderDirectoryItem = ({ item: appointment }) => {
+  const renderAppointmentItem = ({ item: appointment }) => {
     return (
       <Animatable.View animation="fadeInRightBig" duration={2000}>
         <Tile
@@ -38,10 +38,10 @@ const DirectoryScreen = ({ navigation }) => {
   return (
     <FlatList
       data={appointments.appointmentsArray}
-      renderItem={renderDirectoryItem}
+      renderItem={renderAppointmentItem}
       keyExtractor={(item) => item.id.toString()}
     />
   );
 };
 
-export default DirectoryScreen;
+export default AppointmentScreen;

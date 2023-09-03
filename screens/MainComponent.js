@@ -20,7 +20,7 @@ import { useDispatch } from "react-redux";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/core";
 import NetInfo from "@react-native-community/netinfo";
 import AppointmentInfoScreen from "./AppointmentInfoScreen";
-import DirectoryScreen from "./DirectoryScreen";
+import AppointmentScreen from "./AppointmentScreen";
 import HomeScreen from "./HomeScreen";
 import AboutScreen from "./AboutScreen";
 import ContactScreen from "./ContactScreen";
@@ -181,15 +181,18 @@ function LoginNavigator() {
   );
 }
 
-function DirectoryNavigator() {
+function AppointmentNavigator() {
   const Stack = createStackNavigator();
   return (
-    <Stack.Navigator initialRouteName="Services" screenOptions={screenOptions}>
+    <Stack.Navigator
+      initialRouteName="Appointments"
+      screenOptions={screenOptions}
+    >
       <Stack.Screen
-        name="Services"
-        component={DirectoryScreen}
+        name="Appointments"
+        component={AppointmentScreen}
         options={({ navigation }) => ({
-          title: "Services",
+          title: "Appointments",
           headerLeft: () => (
             <Icon
               name="list"
@@ -339,7 +342,7 @@ function Main() {
         />
         <Drawer.Screen
           name="Services"
-          component={DirectoryNavigator}
+          component={AppointmentNavigator}
           options={{
             title: "Services",
             drawerIcon: ({ color }) => (
