@@ -11,6 +11,7 @@ import { Text,
 import { Picker } from "@react-native-picker/picker";
 import DateTimePicker from '@react-native-community/datetimepicker'; 
 import * as Animatable from 'react-native-animatable';
+import * as Notifications from 'expo-notifications';
 
 const ReservationScreen = () => {
     const [campers, setCampers] = useState(1);
@@ -42,6 +43,9 @@ const ReservationScreen = () => {
                 {
                     text: 'OK',
                     onPress: () => {
+                        presentLocalNotification(
+                            date.toLocaleDateString('en-US')
+                        );
                         resetForm();
                     }
                 }
@@ -61,7 +65,34 @@ const ReservationScreen = () => {
         setHikeIn(false);
         setDate(new Date());
         setShowCalendar(false);
-    }
+    };
+
+    const presentLocalNotification = async (reservationDate) => {
+        const sendNotification = () => {
+            Notifications.setNotificationHandler({
+                handleNotification: async () => ({
+                    shouldShowAlert: true,
+                    shouldPlaySound: true,
+                    shouldSetBadge: true
+                })
+            });
+            Notifications.scheduleNotificationAsync({
+                content: {
+                    title: 'Your Campsite Reservation Search',
+                    body: `Search for ${reservationDate} requested`
+                },
+                trigger: null //causes notification to fire immediately-property can be used to schedule a notification in future
+            });
+        };
+
+        let permissions = await Notifications.getPermissionsAsync(); //await keyword is only used in asynch function. It is similar in concept to then method. You use it followed by a promise from notifications API. This code returns a promise that will fulfill with the result of checking that this device has permissions to show notifications. Await keyword causes code to pause and wait for promise to be fulfilled. It assign promise result to permissions variable.  
+        if (!permissions.granted) { //weren't able to verify permissions (yet)
+            permissions = await Notifications.requestPermissionsAsync();
+        }
+        if (permissions.granted) {
+            sendNotification();
+        }
+    };
 
     return(
         <ScrollView>
