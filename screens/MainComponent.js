@@ -376,7 +376,7 @@ function Main() {
           name="Favorites"
           component={FavoritesNavigator}
           options={{
-            title: "My Favorites",
+            title: "Favorite Services",
             drawerIcon: ({ color }) => (
               <Icon
                 name="heart"

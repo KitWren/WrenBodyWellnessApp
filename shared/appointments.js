@@ -1,8 +1,8 @@
 export const APPOINTMENTS = [
   {
     id: 0,
-    name: "React Lake Campground",
-    image: require("../assets/images/react-lake.jpg"),
+    name: "Massage Therapy",
+    image: require("../assets/images/cranialPhoto.jpg"),
     elevation: 1233,
     featured: false,
     description:
@@ -10,7 +10,7 @@ export const APPOINTMENTS = [
   },
   {
     id: 1,
-    name: "Chrome River Campground ",
+    name: "RMR + VO2 Max testing",
     image: require("../assets/images/chrome-river.jpg"),
     elevation: 877,
     featured: false,
@@ -19,7 +19,7 @@ export const APPOINTMENTS = [
   },
   {
     id: 2,
-    name: "Breadcrumb Trail Campground",
+    name: "Strength Training",
     image: require("../assets/images/breadcrumb-trail.jpg"),
     elevation: 2901,
     featured: false,
