@@ -4,6 +4,7 @@ import { commentsReducer } from "../features/comments/commentsSlice";
 import { partnersReducer } from "../features/partners/partnersSlice";
 import { promotionsReducer } from "../features/promotions/promotionsSlice";
 import { favoritesReducer } from "../features/favorites/favoritesSlice";
+import { exercisesReducer } from "../features/exercises/exercisesSlice";
 import {
   persistStore,
   persistCombineReducers,
@@ -29,6 +30,7 @@ export const store = configureStore({
     partners: partnersReducer,
     promotions: promotionsReducer,
     favorites: favoritesReducer,
+    exercises: exercisesReducer,
   }),
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

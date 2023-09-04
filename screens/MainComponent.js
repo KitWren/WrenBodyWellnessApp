@@ -32,6 +32,9 @@ import { fetchPromotions } from "../features/promotions/promotionsSlice";
 import { fetchComments } from "../features/comments/commentsSlice";
 import FavoritesScreen from "./FavoritesScreen";
 import LoginScreen from "./LoginScreen";
+import ExerciseLibraryScreen from "./ExerciseLibraryScreen";
+import ExerciseLibraryInfoScreen from "./ExerciseLibraryInfoScreen";
+import { fetchExercises } from "../features/exercises/exercisesSlice";
 
 const Drawer = createDrawerNavigator();
 
@@ -125,6 +128,36 @@ function ReservationNavigator() {
               onPress={() => navigation.toggleDrawer()}
             />
           ),
+        })}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function ExerciseLibraryNavigator() {
+  const Stack = createStackNavigator();
+  return (
+    <Stack.Navigator screenOptions={screenOptions}>
+      <Stack.Screen
+        name="Exercise Library"
+        component={ExerciseLibraryScreen}
+        options={({ navigation }) => ({
+          title: "Exercise Library",
+          headerLeft: () => (
+            <Icon
+              name="bicycle"
+              type="font-awesome"
+              iconStyle={styles.stackIcon}
+              onPress={() => navigation.toggleDrawer()}
+            />
+          ),
+        })}
+      />
+      <Stack.Screen
+        name="ExerciseLibraryInfo" //this is linked to payload-need to change functional code
+        component={ExerciseLibraryInfoScreen}
+        options={({ route }) => ({
+          title: route.params.exercise.name,
         })}
       />
     </Stack.Navigator>
@@ -238,6 +271,7 @@ function Main() {
     dispatch(fetchPromotions());
     dispatch(fetchPartners());
     dispatch(fetchComments());
+    dispatch(fetchExercises());
   }, [dispatch]);
 
   useEffect(() => {
@@ -317,7 +351,7 @@ function Main() {
               <Icon
                 name="sign-in"
                 type="font-awesome"
-                size={24}
+                size={17}
                 iconStyle={{ width: 24 }}
                 color={color}
               />
@@ -333,7 +367,7 @@ function Main() {
               <Icon
                 name="home"
                 type="font-awesome"
-                size={24}
+                size={17}
                 iconStyle={{ width: 24 }}
                 color={color}
               />
@@ -349,7 +383,7 @@ function Main() {
               <Icon
                 name="list"
                 type="font-awesome"
-                size={24}
+                size={17}
                 iconStyle={{ width: 24 }}
                 color={color}
               />
@@ -365,7 +399,23 @@ function Main() {
               <Icon
                 name="calendar"
                 type="font-awesome"
-                size={24}
+                size={17}
+                iconStyle={{ width: 24 }}
+                color={color}
+              />
+            ),
+          }}
+        />
+        <Drawer.Screen
+          name="Exercise Library"
+          component={ExerciseLibraryNavigator}
+          options={{
+            title: "Exercise Library",
+            drawerIcon: ({ color }) => (
+              <Icon
+                name="bicycle"
+                type="font-awesome"
+                size={17}
                 iconStyle={{ width: 24 }}
                 color={color}
               />
@@ -381,7 +431,7 @@ function Main() {
               <Icon
                 name="heart"
                 type="font-awesome"
-                size={24}
+                size={17}
                 iconStyle={{ width: 24 }}
                 color={color}
               />
@@ -397,7 +447,7 @@ function Main() {
               <Icon
                 name="info-circle"
                 type="font-awesome"
-                size={24}
+                size={17}
                 iconStyle={{ width: 24 }}
                 color={color}
               />
@@ -413,7 +463,7 @@ function Main() {
               <Icon
                 name="address-card"
                 type="font-awesome"
-                size={24}
+                size={17}
                 iconStyle={{ width: 24 }}
                 color={color}
               />
