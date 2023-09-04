@@ -1,9 +1,10 @@
 import { useEffect, useRef } from "react";
-import { Text, View, Animated } from "react-native";
+import { Text, Image, View, Animated, StyleSheet } from "react-native";
 import { Card } from "react-native-elements";
 import { useSelector } from "react-redux";
 import { baseUrl } from "../shared/baseUrl";
 import Loading from "../components/LoadingComponent";
+import PlainLogoItalicsFont from "../assets/images/PlainLogoItalicsFont.png";
 
 const FeaturedItem = (props) => {
   const { item } = props;
@@ -68,6 +69,10 @@ const HomeScreen = () => {
 
   return (
     <Animated.ScrollView style={{ transform: [{ scale: scaleValue }] }}>
+      <View style={styles.container}>
+        <Image style={styles.cover} source={PlainLogoItalicsFont} />
+      </View>
+
       <FeaturedItem
         item={featAppointment}
         isLoading={appointments.isLoading}
@@ -86,5 +91,19 @@ const HomeScreen = () => {
     </Animated.ScrollView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    paddingTop: 15,
+  },
+  cover: {
+    width: 430,
+    height: 250,
+    resizeMode: "cover",
+  },
+  resizeMethod: {
+    scale: "scale",
+  },
+});
 
 export default HomeScreen;

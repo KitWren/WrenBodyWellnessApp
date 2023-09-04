@@ -119,7 +119,7 @@ function ReservationNavigator() {
           title: "Book Appointment",
           headerLeft: () => (
             <Icon
-              name="tree"
+              name="calendar"
               type="font-awesome"
               iconStyle={styles.stackIcon}
               onPress={() => navigation.toggleDrawer()}
@@ -363,7 +363,7 @@ function Main() {
             title: "Book Appointment",
             drawerIcon: ({ color }) => (
               <Icon
-                name="tree"
+                name="calendar"
                 type="font-awesome"
                 size={24}
                 iconStyle={{ width: 24 }}
@@ -436,7 +436,7 @@ const styles = StyleSheet.create({
   },
   drawerHeaderText: {
     color: "#fff",
-    fontSize: 24,
+    fontSize: 30,
     fontWeight: "bold",
   },
   drawerImage: {

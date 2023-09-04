@@ -15,8 +15,8 @@ import * as Animatable from "react-native-animatable";
 import * as Notifications from "expo-notifications";
 
 const ReservationScreen = () => {
-  const [campers, setCampers] = useState(1);
-  const [hikeIn, setHikeIn] = useState(false);
+  const [appointments, setAppointments] = useState(1);
+  const [firstApt, setFirstApt] = useState(false);
   const [date, setDate] = useState(new Date());
   const [showCalendar, setShowCalendar] = useState(false);
   // const [showModal, setShowModal] = useState(false);
@@ -28,7 +28,7 @@ const ReservationScreen = () => {
   };
 
   const handleReservation = () => {
-    const stringMsg = `Number of Campers: ${campers} \n Hike-In: ${hikeIn} \n Date: ${date.toLocaleString(
+    const stringMsg = `Number of Appointments: ${appointments} \n First Appointment: ${firstApt} \n Date: ${date.toLocaleString(
       "en-US"
     )}`;
     Alert.alert(
@@ -53,15 +53,15 @@ const ReservationScreen = () => {
       { cancelable: false }
     );
 
-    console.log("campers: ", campers);
-    console.log("hikeIn: ", hikeIn);
+    console.log("appointments: ", appointments);
+    console.log("firstApt: ", firstApt);
     console.log("date: ", date);
     // setShowModal(!showModal)
   };
 
   const resetForm = () => {
-    setCampers(1);
-    setHikeIn(false);
+    setAppointments(1);
+    setFirstApt(false);
     setDate(new Date());
     setShowCalendar(false);
   };
@@ -98,11 +98,11 @@ const ReservationScreen = () => {
     <ScrollView>
       <Animatable.View animation="zoomIn" duration={2000} delay={1000}>
         <View style={styles.formRow}>
-          <Text style={styles.formLabel}>Number of Campers:</Text>
+          <Text style={styles.formLabel}>Number of Appointments:</Text>
           <Picker
             style={styles.formItem}
-            selectedValue={campers}
-            onValueChange={(itemValue) => setCampers(itemValue)}
+            selectedValue={appointments}
+            onValueChange={(itemValue) => setAppointments(itemValue)}
           >
             <Picker.Item label="1" value={1} />
             <Picker.Item label="2" value={2} />
@@ -110,15 +110,19 @@ const ReservationScreen = () => {
             <Picker.Item label="4" value={4} />
             <Picker.Item label="5" value={5} />
             <Picker.Item label="6" value={6} />
+            <Picker.Item label="7" value={7} />
+            <Picker.Item label="8" value={8} />
+            <Picker.Item label="9" value={9} />
+            <Picker.Item label="10" value={10} />
           </Picker>
         </View>
         <View style={styles.formRow}>
-          <Text style={styles.formLabel}>Hike In?</Text>
+          <Text style={styles.formLabel}>First appointment?</Text>
           <Switch
             style={styles.formItem}
-            value={hikeIn}
-            trackColor={{ true: "#5637DD", false: null }}
-            onValueChange={(value) => setHikeIn(value)}
+            value={firstApt}
+            trackColor={{ true: "#4a2c3f", false: null }}
+            onValueChange={(value) => setFirstApt(value)}
           />
         </View>
         <View style={styles.formRow}>
@@ -126,8 +130,8 @@ const ReservationScreen = () => {
           <Button
             onPress={() => setShowCalendar(!showCalendar)}
             title={date.toLocaleDateString("en-US")}
-            color="#5637DD"
-            accessibilityLabel="Tap me to select a reservation date"
+            color="#4a2c3f"
+            accessibilityLabel="Tap me to select an appointment date"
           />
         </View>
         {showCalendar && (
@@ -143,7 +147,7 @@ const ReservationScreen = () => {
           <Button
             onPress={() => handleReservation()}
             title="Search Availability"
-            color="#5637DD"
+            color="#4a2c3f"
             accessibilityLabel="Tap me to search for available appointment to reserve"
           />
         </View>
