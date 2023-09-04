@@ -1,15 +1,16 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { baseUrl } from "../../shared/baseUrl";
+import { mapImageURL } from "../../utils/mapImageURL";
 
 export const fetchExercises = createAsyncThunk(
   "exercises/fetchExercises",
   async () => {
-    const response = await fetch(baseUrl + "exercises");
-    if (!response.ok) {
-      return Promise.reject("Unable to fetch, status: " + response.status);
-    }
-    const data = await response.json();
-    return data;
+    const querySnapshot = await getDocs(collection(db, "exercises"));
+    const exercises = [];
+    querySnapshot.forEach((doc) => {
+      exercises.push(doc.data());
+    });
+    return exercises;
   }
 );
 
@@ -25,7 +26,7 @@ const exercisesSlice = createSlice({
       .addCase(fetchExercises.fulfilled, (state, action) => {
         state.isLoading = false;
         state.errMess = null;
-        state.exercisesArray = action.payload;
+        state.exercisesArray = mapImageURL(action.payload);
       })
       .addCase(fetchExercises.rejected, (state, action) => {
         state.isLoading = false;
